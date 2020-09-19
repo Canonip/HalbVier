@@ -28,5 +28,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: canonip/HalbVier/HalbVier
+          repository: canonip/halbvier/halbvier
           tag_with_ref: true
