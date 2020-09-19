@@ -16,7 +16,7 @@ print("started Deutschlandbot")
 async def on_ready():
     global vc
     print(f'We have logged in as {bot.user} at {datetime.datetime.now()}')
-    voicechannel = bot.get_channel(os.environ.get('VOICE_CHANNEL'))
+    voicechannel = bot.get_channel(int(os.environ.get('VOICE_CHANNEL')))
     vc = await voicechannel.connect()
 
 @bot.command()
@@ -32,7 +32,7 @@ async def startDeutschland():
     
 async def announceDeutschland():
     print('Gleich ist Halb Vier')
-    channel = bot.get_channel(os.environ.get('ANNOUNCEMENT_CHANNEL'))
+    channel = bot.get_channel(int(os.environ.get('ANNOUNCEMENT_CHANNEL')))
     await channel.send('@everyone Gleich ist Halb Vier! Kommt in den Halb Vier Voice Channel!')
 
 #Schedulers
