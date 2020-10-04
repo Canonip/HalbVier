@@ -10,4 +10,4 @@ RUN apt-get clean -y
 
 COPY . .
 
-CMD [ "python", "./halbvier.py" ]
+CMD [ "python", "-u", "./halbvier.py" ]
