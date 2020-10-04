@@ -1,6 +1,7 @@
 import discord
 import os
 
+from discord.ext.commands import CommandNotFound
 from discord.ext import commands
 import time
 import datetime
@@ -23,6 +24,12 @@ async def on_ready():
 async def deutschland(ctx):
     #if ctx.message.author.server_permissions.administrator:
     await startDeutschland()
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        return
+    raise error
 
 async def startDeutschland():
     global vc
