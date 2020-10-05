@@ -17,8 +17,6 @@ print("started Deutschlandbot")
 async def on_ready():
     global vc
     print(f'We have logged in as {bot.user} at {datetime.datetime.now()}')
-    voicechannel = bot.get_channel(int(os.environ.get('VOICE_CHANNEL')))
-    vc = await voicechannel.connect()
 
 @bot.command()
 async def deutschland(ctx):
@@ -35,7 +33,14 @@ async def startDeutschland():
     global vc
     if not vc.is_playing():
         print('DEUTSCHLAND')
-        vc.play(discord.FFmpegPCMAudio("Deutschland.m4a"), after=lambda e: print('fertig gedeutschlanded'))
+        voicechannel = bot.get_channel(int(os.environ.get('VOICE_CHANNEL')))
+        vc = await voicechannel.connect()
+        vc.play(discord.FFmpegPCMAudio("Deutschland.m4a"), after=disconnect)
+
+async def disconnect():
+    global vc
+    if not vc.is_connected():
+        await vc.disconnect()
     
 async def announceDeutschland():
     print('Gleich ist Halb Vier')
